@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'corsheaders',
     'hup.apps.HupConfig',
+    'events.apps.EventsConfig',
     'rest_auth',
     'django.contrib.sites',
     'allauth',
@@ -95,8 +96,12 @@ WSGI_APPLICATION = 'hupBE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hup',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
