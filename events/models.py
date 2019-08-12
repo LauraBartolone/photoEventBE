@@ -11,13 +11,6 @@ from model_utils.models import TimeStampedModel
 from django.db import models
 
 
-def get_populate_from(instance):
-    attrs = [attr.replace("__", ".") for attr in instance.AUTOSLUG_FIELDS]
-    attrs_values = [attrgetter(attr)(instance) for attr in attrs]
-
-    return "-".join(attrs_values)
-
-
 class Board(models.Model):
 
     @classmethod
@@ -30,10 +23,10 @@ class Event(models.Model):
     #                                            processors=[ResizeToFit(1980, 1080)],
     #                                            blank=True, null=True
     #                                            )
-    AUTOSLUG_FIELDS = "name"
+    AUTOSLUG_FIELDS = 'name'
     name = models.CharField(max_length=30, blank=False, null=False)
     date = models.DateField(blank=False, null=False)
     note = models.CharField(max_length=255, blank=True, null=True)
-    code = AutoSlugField(max_length=5, populate_from=get_populate_from, unique=True)
+    code = AutoSlugField(populate_from='name', max_length=5, unique=True, default="00000")
     board = models.OneToOneField(Board, default=Board.get_new, on_delete=models.CASCADE)
     # isPublic = models.BooleanField(default=False)

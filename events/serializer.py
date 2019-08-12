@@ -8,4 +8,4 @@ class BackendEventModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        exclude = ['created', 'modified']
+        exclude = []
