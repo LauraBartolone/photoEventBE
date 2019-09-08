@@ -10,12 +10,23 @@ from model_utils.models import TimeStampedModel
 # Create your models here.
 from django.db import models
 
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit, ResizeToFill
+from imagekit.models import ImageSpecField
+
+from django.contrib.auth.models import User
 
 class Board(models.Model):
 
     @classmethod
     def get_new(cls):
         return cls.objects.create().id
+
+
+class BoardMessage(models.Model):
+
+    content = models.TextField(max_length=3000, blank=False, null=False)
+    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
 
 
 class Category(models.Model):
@@ -26,28 +37,42 @@ class Category(models.Model):
     PARTY = 'wedding'
     OTHER = 'other'
 
-    CATEGORIES = (
+    CATEGORIES = [
         (WEDDING, 'wedding'),
         (BIRTHDAY, 'birthday'),
         (GRADUATE, 'graduate'),
-        (HOLY, 'wedding'),
-        (PARTY, 'wedding'),
+        (HOLY, 'holy'),
+        (PARTY, 'party'),
         (OTHER, 'other'),
-    )
+    ]
     name = models.CharField(blank=False, null=False, choices=CATEGORIES, default=OTHER, max_length=15)
 
 
+class Photo(models.Model):
+    image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
+                                blank=True, null=True,
+                                format='JPEG',
+                                options={'quality': 60}
+                                )
+    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+
+
+class Like(models.Model):
+    photo = models.ForeignKey(Photo, blank=False, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+
+
 class Event(models.Model):
-    background_app_image = ProcessedImageField(upload_to='museums/background_app_images/%Y/%m/%d/',
-                                               processors=[ResizeToFit(1980, 1080)],
-                                               blank=True, null=True
-                                               )
+    image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
+                                   processors=[ResizeToFit(400, 400)],
+                                   blank=True, null=True
+                               )
     AUTOSLUG_FIELDS = 'name'
     name = models.CharField(max_length=30, blank=False, null=False)
     date = models.DateField(blank=False, null=False)
     note = models.CharField(max_length=255, blank=True, null=True)
     code = AutoSlugField(populate_from='name', max_length=5, unique=True)
-    board = models.OneToOneField(Board, default=Board.get_new, on_delete=models.CASCADE)
+    board = models.OneToOneField(Board, default=Board.get_new, on_delete=models.SET_DEFAULT)
     category = models.ForeignKey(Category, blank=False, null=False, on_delete=models.SET_DEFAULT, default=6)
     isPublic = models.BooleanField(default=False)
 
