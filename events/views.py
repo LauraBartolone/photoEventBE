@@ -1,13 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here
+from events.paginations import PhotoPagination
 from hup.views import BaseModelViewSet, ProtectedBaseModelViewSet
 
 from rest_framework import status
 from rest_framework.response import Response
 
-from events.models import Event
-from events.serializer import BackendEventModelSerializer
+from events.models import Event, Photo
+from events.serializer import BackendEventModelSerializer, BackendPhotoModelSerializer
 
 
 class BackendEventModelViewSet(ProtectedBaseModelViewSet):
@@ -86,4 +87,24 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         queryset = super(BackendEventModelViewSet, self).get_queryset()
         user = self.request.user
         queryset = queryset.filter(user=user)
+        return queryset
+
+
+class BackendPhotoModelViewSet(BaseModelViewSet):
+    """
+        Photo Model View Set
+    """
+
+    queryset = Photo.objects.all()
+    serializer_class = BackendPhotoModelSerializer
+    pagination_class = PhotoPagination
+
+    def get_queryset(self):
+        """
+
+        :return:
+        """
+        queryset = super(BackendPhotoModelViewSet, self).get_queryset()
+        event_code = self.request.query_params.get('event', None)
+        queryset = queryset.filter(event__code=event_code)
         return queryset

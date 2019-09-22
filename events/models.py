@@ -16,6 +16,7 @@ from imagekit.models import ImageSpecField
 
 from django.contrib.auth.models import User
 
+
 class Board(models.Model):
 
     @classmethod
@@ -48,20 +49,6 @@ class Category(models.Model):
     name = models.CharField(blank=False, null=False, choices=CATEGORIES, default=OTHER, max_length=15)
 
 
-class Photo(models.Model):
-    image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
-                                blank=True, null=True,
-                                format='JPEG',
-                                options={'quality': 60}
-                                )
-    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
-
-
-class Like(models.Model):
-    photo = models.ForeignKey(Photo, blank=False, null=True, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
-
-
 class Event(models.Model):
     image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
                                    processors=[ResizeToFit(400, 400)],
@@ -76,5 +63,23 @@ class Event(models.Model):
     category = models.ForeignKey(Category, blank=False, null=False, on_delete=models.SET_DEFAULT, default=6)
     isPublic = models.BooleanField(default=False)
     user = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
+
+
+class Photo(models.Model):
+    image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
+                                blank=True, null=True,
+                                format='JPEG',
+                                options={'quality': 60}
+                                )
+    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+    event = models.ForeignKey(Event, blank=False, null=False, on_delete=models.CASCADE)
+
+
+class Like(models.Model):
+    photo = models.ForeignKey(Photo, blank=False, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+
+
+
 
 

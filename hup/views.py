@@ -3,10 +3,12 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 # Create your views here.
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 class BaseModelViewSet(ModelViewSet):
     """
-        Parent Class for API
+        Parent Class for APIsetti
     """
     # permission_classes = [IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
@@ -18,4 +20,4 @@ class ProtectedBaseModelViewSet(ModelViewSet):
         Parent Class for API
     """
     permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JSONWebTokenAuthentication]
