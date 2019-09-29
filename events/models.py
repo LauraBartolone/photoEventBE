@@ -58,7 +58,7 @@ class Event(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     date = models.DateField(blank=False, null=False)
     note = models.CharField(max_length=255, blank=True, null=True)
-    code = AutoSlugField(populate_from='name', max_length=5, unique=True)
+    code = AutoSlugField(populate_from='name', max_length=7, unique=True)
     board = models.OneToOneField(Board, default=Board.get_new, on_delete=models.SET_DEFAULT)
     category = models.ForeignKey(Category, blank=False, null=False, on_delete=models.SET_DEFAULT, default=6)
     isPublic = models.BooleanField(default=False)

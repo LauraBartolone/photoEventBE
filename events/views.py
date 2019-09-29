@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here
+from rest_framework.status import HTTP_200_OK
+
 from events.paginations import PhotoPagination
-from hup.views import BaseModelViewSet, ProtectedBaseModelViewSet
+from hup.views import BaseModelViewSet, ProtectedBaseModelViewSet, BaseAPIView
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -107,4 +109,26 @@ class BackendPhotoModelViewSet(BaseModelViewSet):
         queryset = super(BackendPhotoModelViewSet, self).get_queryset()
         event_code = self.request.query_params.get('event', None)
         queryset = queryset.filter(event__code=event_code)
-        return queryset
+        count = queryset.count()
+        event = Event.objects.filter(code = event_code).exists()
+
+        if event:
+            return queryset.order_by('pk')
+
+
+class BackendEventAPIView(BaseAPIView):
+    """
+    """
+
+    def get(self, request, code):
+        """
+
+        :param request:
+        :param code: can be matri, mat-01
+        :return:
+        """
+        event_exist = Event.objects.filter(code=code).exists()
+        if event_exist:
+            return Response({'status': 200}, status=HTTP_200_OK)
+        else:
+            return Response({'status': 400}, status=status.HTTP_400_BAD_REQUEST)
