@@ -1,5 +1,7 @@
 from hup.serializers import BaseSerializer, Base64ImageField
-from events.models import Event, Photo
+from events.models import Event, Photo, BoardMessage
+from rest_framework.fields import CurrentUserDefault
+from rest_framework import serializers
 
 
 class BackendEventModelSerializer(BaseSerializer):
@@ -16,4 +18,13 @@ class BackendPhotoModelSerializer(BaseSerializer):
 
     class Meta:
         model = Photo
+        exclude = []
+
+
+class BackendBoardMessageSerializer(BaseSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    class Meta:
+        model = BoardMessage
         exclude = []

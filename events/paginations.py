@@ -13,3 +13,9 @@ class PhotoPagination(BasePagination):
     """
     pass
 
+
+class BoardMessagePagination(BasePagination):
+    """
+        Photo Pagination
+    """
+    pass

@@ -3,14 +3,14 @@ from django.shortcuts import render
 # Create your views here
 from rest_framework.status import HTTP_200_OK
 
-from events.paginations import PhotoPagination
+from events.paginations import PhotoPagination, BoardMessagePagination
 from hup.views import BaseModelViewSet, ProtectedBaseModelViewSet, BaseAPIView
 
 from rest_framework import status
 from rest_framework.response import Response
 
-from events.models import Event, Photo
-from events.serializer import BackendEventModelSerializer, BackendPhotoModelSerializer
+from events.models import Event, Photo, BoardMessage
+from events.serializer import BackendEventModelSerializer, BackendPhotoModelSerializer, BackendBoardMessageSerializer
 
 
 class BackendEventModelViewSet(ProtectedBaseModelViewSet):
@@ -90,6 +90,21 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         user = self.request.user
         queryset = queryset.filter(user=user)
         return queryset
+
+
+class BackendBoardMessageModelViewSet(ProtectedBaseModelViewSet):
+
+    queryset = BoardMessage.objects.all()
+    serializer_class = BackendBoardMessageSerializer
+    pagination_class = BoardMessagePagination
+
+    def get_queryset(self):
+        """
+
+        :return:
+        """
+        queryset = super(BackendBoardMessageModelViewSet, self).get_queryset()
+        return queryset.order_by('pk')
 
 
 class BackendPhotoModelViewSet(BaseModelViewSet):

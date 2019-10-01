@@ -28,6 +28,7 @@ class BoardMessage(models.Model):
 
     content = models.TextField(max_length=3000, blank=False, null=False)
     user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
+    board = models.ForeignKey(Board, blank=False, null=False, on_delete=models.CASCADE)
 
 
 class Category(models.Model):
