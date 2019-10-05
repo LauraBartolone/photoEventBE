@@ -70,7 +70,7 @@ class Photo(models.Model):
     image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
                                 blank=True, null=True,
                                 format='JPEG',
-                                options={'quality': 60}
+                                options={'quality': 90}
                                 )
     user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
     event = models.ForeignKey(Event, blank=False, null=False, on_delete=models.CASCADE)

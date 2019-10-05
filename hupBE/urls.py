@@ -19,6 +19,9 @@ from django.conf.urls import url
 from django.conf.urls import include
 from hupBE.views import FacebookLogin, GoogleLogin
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('events.urls')),
@@ -27,4 +30,4 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^rest-auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
     url(r'^rest-auth/google/$', GoogleLogin.as_view(), name='google_login')
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
