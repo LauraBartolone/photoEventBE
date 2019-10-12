@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 
 # Create your views here
@@ -10,8 +12,11 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from events.models import Event, Photo, BoardMessage
-from events.serializer import BackendEventModelSerializer, BackendPhotoModelSerializer, BackendBoardMessageSerializer
+from events.serializer import BackendEventModelSerializer, BackendPhotoModelSerializer, BackendBoardMessageSerializer, \
+    BackendBoardMessageWithUserSerializer
+from django.http import JsonResponse
 
+from django.core import serializers
 
 class BackendEventModelViewSet(ProtectedBaseModelViewSet):
     """
@@ -94,8 +99,13 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
 
 class BackendBoardMessageModelViewSet(ProtectedBaseModelViewSet):
 
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return BackendBoardMessageSerializer
+        return BackendBoardMessageWithUserSerializer
+
     queryset = BoardMessage.objects.all()
-    serializer_class = BackendBoardMessageSerializer
+    serializer_class = get_serializer_class
     pagination_class = BoardMessagePagination
 
     def get_queryset(self):
@@ -103,8 +113,10 @@ class BackendBoardMessageModelViewSet(ProtectedBaseModelViewSet):
 
         :return:
         """
+        board = self.request.query_params.get('board', None)
         queryset = super(BackendBoardMessageModelViewSet, self).get_queryset()
-        return queryset.order_by('pk')
+        queryset = queryset.filter(board_id=board)
+        return queryset.order_by('-pk')
 
 
 class BackendPhotoModelViewSet(BaseModelViewSet):
@@ -124,7 +136,6 @@ class BackendPhotoModelViewSet(BaseModelViewSet):
         queryset = super(BackendPhotoModelViewSet, self).get_queryset()
         event_code = self.request.query_params.get('event', None)
         queryset = queryset.filter(event__code=event_code)
-        count = queryset.count()
         event = Event.objects.filter(code = event_code).exists()
 
         if event:
@@ -142,8 +153,15 @@ class BackendEventAPIView(BaseAPIView):
         :param code: can be matri, mat-01
         :return:
         """
+
         event_exist = Event.objects.filter(code=code).exists()
+        event = Event.objects.filter(code=code).get()
+
         if event_exist:
-            return Response({'status': 200}, status=HTTP_200_OK)
+            event_obj = dict()
+            event_obj['id'] = event.id
+            event_obj['board'] = event.board_id
+            event_obj['status'] = 200
+            return Response(event_obj, status=HTTP_200_OK)
         else:
             return Response({'status': 400}, status=status.HTTP_400_BAD_REQUEST)
