@@ -94,6 +94,11 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         queryset = super(BackendEventModelViewSet, self).get_queryset()
         user = self.request.user
         queryset = queryset.filter(user=user)
+
+        event_code = self.request.query_params.get('event', None)
+        queryset = queryset.filter(event__code=event_code)
+        event = Event.objects.filter(code=event_code).exists()
+
         return queryset
 
 
