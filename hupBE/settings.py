@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'imagekit',
+    'django_extensions',
+    'drf_yasg',
 ]
 
 SITE_ID = 1
