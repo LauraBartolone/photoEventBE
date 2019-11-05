@@ -9,7 +9,7 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 class BaseModelViewSet(ModelViewSet):
     """
-        Parent Class for APIsetti
+        Parent Class for ModelViewSet
     """
     # permission_classes = [IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
@@ -18,7 +18,7 @@ class BaseModelViewSet(ModelViewSet):
 
 class ProtectedBaseModelViewSet(ModelViewSet):
     """
-        Parent Class for API
+        Parent Protected Class for ModelViewSet
     """
     permission_classes = [IsAuthenticated]
     authentication_classes = [JSONWebTokenAuthentication]

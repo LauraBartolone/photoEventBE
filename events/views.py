@@ -18,6 +18,7 @@ from django.http import JsonResponse
 
 from django.core import serializers
 
+
 class BackendEventModelViewSet(ProtectedBaseModelViewSet):
     """
         Event Model View Set
@@ -28,7 +29,7 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
 
     def create(self, request, *args, **kwargs):
         """
-            It overrides "create function" to create an event
+        It overrides "create function" to create an event
         :param request:
         :param args:
         :param kwargs:
@@ -65,7 +66,7 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         :return:
         """
         user = request.user
-
+        instance = self.get_object()
         event_obj = dict()
         try:
             event_obj['user'] = user.id
@@ -78,7 +79,7 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         event_obj['category'] = request.data.get('category')
         event_obj['image'] = request.data.get('image')
 
-        serializer_event = BackendEventModelSerializer(data=event_obj)
+        serializer_event = BackendEventModelSerializer(instance, data=event_obj)
         if serializer_event.is_valid():
             serializer_event.save()
 
@@ -94,10 +95,6 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         queryset = super(BackendEventModelViewSet, self).get_queryset()
         user = self.request.user
         queryset = queryset.filter(user=user)
-
-        event_code = self.request.query_params.get('event', None)
-        queryset = queryset.filter(event__code=event_code)
-        event = Event.objects.filter(code=event_code).exists()
 
         return queryset
 
@@ -122,6 +119,28 @@ class BackendBoardMessageModelViewSet(ProtectedBaseModelViewSet):
         queryset = super(BackendBoardMessageModelViewSet, self).get_queryset()
         queryset = queryset.filter(board_id=board)
         return queryset.order_by('-pk')
+
+
+class BackendAllPhotoModelViewSet(BaseModelViewSet):
+    """
+        Photo Model View Set
+    """
+
+    queryset = Photo.objects.all()
+    serializer_class = BackendPhotoModelSerializer
+
+    def get_queryset(self):
+        """
+
+        :return:
+        """
+        queryset = super(BackendAllPhotoModelViewSet, self).get_queryset()
+        event_id = self.request.query_params.get('event', None)
+        queryset = queryset.filter(event_id=event_id)
+        event = Event.objects.filter(id = event_id).exists()
+
+        if event:
+            return queryset.order_by('pk')
 
 
 class BackendPhotoModelViewSet(BaseModelViewSet):
