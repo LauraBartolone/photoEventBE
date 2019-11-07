@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render
 
 # Create your views here
+from django.utils.http import urlsafe_base64_encode
 from rest_framework.status import HTTP_200_OK
 
 from events.paginations import PhotoPagination, BoardMessagePagination
@@ -185,6 +186,9 @@ class BackendEventAPIView(BaseAPIView):
             event_obj = dict()
             event_obj['id'] = event.id
             event_obj['board'] = event.board_id
+            if event.image.name is not None and event.image.name !='':
+                event_obj['image'] = request.META['HTTP_HOST'] + event.image.url
+            event_obj['category'] = event.category_id
             event_obj['status'] = 200
             return Response(event_obj, status=HTTP_200_OK)
         else:

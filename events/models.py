@@ -67,11 +67,17 @@ class Event(models.Model):
 
 
 class Photo(models.Model):
+
     image = ProcessedImageField(upload_to='events/background_images/%Y/%m/%d/',
                                 blank=True, null=True,
                                 format='JPEG',
                                 options={'quality': 90}
                                 )
+    preview = ImageSpecField(source='image',
+                                 processors=[ResizeToFill(140, 160)],
+                                 format='JPEG',
+                                 options={'quality': 80})
+
     user = models.ForeignKey(User, blank=False, null=True, on_delete=models.SET_NULL)
     event = models.ForeignKey(Event, blank=False, null=False, on_delete=models.CASCADE)
 

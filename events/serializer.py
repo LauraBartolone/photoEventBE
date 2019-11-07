@@ -16,6 +16,7 @@ class BackendEventModelSerializer(BaseSerializer):
 
 class BackendPhotoModelSerializer(BaseSerializer):
     image = Base64ImageField(max_length=None, use_url=True, required=False, allow_null=True)
+    preview = serializers.ImageField(read_only=True)
 
     class Meta:
         model = Photo
