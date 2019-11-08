@@ -8,8 +8,7 @@
     <list default="true" id="b6adb0bf-6196-4188-911d-eee0530daee7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/events/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/serializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/events/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hupBE/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hupBE/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,10 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/events/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
+            <state relative-caret-position="1054">
               <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -85,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hupBE/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="315">
+              <caret line="107" column="23" lean-forward="true" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
               <folding>
                 <element signature="e#306#315#0" expanded="true" />
               </folding>
@@ -112,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_event">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+            <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
               <filtering />
             </state>
           </provider>
@@ -121,7 +120,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_board">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+            <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
               <filtering />
             </state>
           </provider>
@@ -130,7 +129,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_boardmessage">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+            <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
               <filtering />
             </state>
           </provider>
@@ -161,7 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rest_auth</find>
       <find>already</find>
       <find>filter</find>
       <find>baseMO</find>
@@ -191,6 +189,7 @@
       <find>media</find>
       <find>photo</find>
       <find>prev</find>
+      <find>common</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,14 +218,14 @@
         <option value="$PROJECT_DIR$/hup/paginations.py" />
         <option value="$PROJECT_DIR$/events/urls.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/hupBE/settings.py" />
         <option value="$PROJECT_DIR$/events/views.py" />
         <option value="$PROJECT_DIR$/events/serializer.py" />
         <option value="$PROJECT_DIR$/events/models.py" />
+        <option value="$PROJECT_DIR$/hupBE/settings.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -238,7 +237,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -315,6 +313,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,23 +430,24 @@
       <workItem from="1573078469103" duration="1167000" />
       <workItem from="1573150707924" duration="466000" />
       <workItem from="1573151263375" duration="2021000" />
-      <workItem from="1573166123163" duration="249000" />
+      <workItem from="1573166123163" duration="1481000" />
+      <workItem from="1573224907855" duration="772000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191400000" />
+    <option name="totallyTimeSpent" value="193404000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.67368424" visible="true" weight="0.22334754" />
-      <window_info id="Structure" order="1" sideWeight="0.3263158" side_tool="true" visible="true" weight="0.22334754" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6728061" visible="true" weight="0.22547974" />
+      <window_info id="Structure" order="1" sideWeight="0.32719395" side_tool="true" visible="true" weight="0.22547974" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.27952328" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.27952328" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2881907" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -825,22 +825,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/events/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/events/serializer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
           <folding>
             <element signature="e#0#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hupBE/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-          <folding>
-            <element signature="e#306#315#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -857,21 +857,21 @@
     </entry>
     <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_event">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+        <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
           <filtering />
         </state>
       </provider>
     </entry>
     <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_board">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+        <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
           <filtering />
         </state>
       </provider>
     </entry>
     <entry file="das://64f13eb8-d85b-4d8e-94f5-1b39e563f83a/schema/hup/table/events_boardmessage">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="be0b7849-2f3a-4844-a626-a14f76aeecc7">
+        <state projectRestartId="5d072060-907b-4f24-a5e1-af41e885c2fe">
           <filtering />
         </state>
       </provider>
@@ -893,12 +893,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/events/models.py">
+    <entry file="file://$PROJECT_DIR$/hupBE/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="78" column="54" selection-start-line="78" selection-start-column="54" selection-end-line="78" selection-end-column="54" />
+        <state relative-caret-position="315">
+          <caret line="107" column="23" lean-forward="true" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#306#315#0" expanded="true" />
           </folding>
         </state>
       </provider>
