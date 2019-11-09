@@ -109,6 +109,9 @@ DATABASES = {
         'PASSWORD': 'admin',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True, },
     }
 }
 
