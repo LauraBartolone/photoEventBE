@@ -97,7 +97,7 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         user = self.request.user
         queryset = queryset.filter(user=user)
 
-        return queryset
+        return queryset.order_by('-pk')
 
 
 class BackendBoardMessageModelViewSet(ProtectedBaseModelViewSet):
