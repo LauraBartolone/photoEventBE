@@ -164,7 +164,7 @@ class BackendPhotoModelViewSet(BaseModelViewSet):
         event = Event.objects.filter(code = event_code).exists()
 
         if event:
-            return queryset.order_by('pk')
+            return queryset.order_by('-pk')
 
 
 class BackendEventAPIView(BaseAPIView):
