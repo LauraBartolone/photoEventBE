@@ -103,7 +103,8 @@ WSGI_APPLICATION = 'hupBE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        #'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'hup',
         'USER': 'root',
         'PASSWORD': 'Bloren_19',
