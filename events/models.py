@@ -68,7 +68,7 @@ class Event(models.Model):
     code = models.CharField(max_length=5, default=f, unique=True, blank=False, null=True)
     board = models.OneToOneField(Board, default=Board.get_new, on_delete=models.SET_DEFAULT)
     category = models.ForeignKey(Category, blank=False, null=False, on_delete=models.SET_DEFAULT, default=6)
-    isPublic = models.BooleanField(default=False)
+    # isPublic = models.BooleanField(default=False)
     user = models.ForeignKey(User, blank=False, null=False, on_delete=models.CASCADE)
 
 
