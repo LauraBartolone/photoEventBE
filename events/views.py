@@ -5,7 +5,7 @@ from django.shortcuts import render
 # Create your views here
 from django.utils.http import urlsafe_base64_encode
 from rest_framework.status import HTTP_200_OK
-
+from rest_framework.exceptions import ValidationError
 from events.paginations import PhotoPagination, BoardMessagePagination
 from hup.views import BaseModelViewSet, ProtectedBaseModelViewSet, BaseAPIView
 
@@ -165,6 +165,8 @@ class BackendPhotoModelViewSet(BaseModelViewSet):
 
         if event:
             return queryset.order_by('-pk')
+        else:
+            raise ValidationError(detail='Invalid event code')
 
 
 class BackendEventAPIView(BaseAPIView):
@@ -180,9 +182,9 @@ class BackendEventAPIView(BaseAPIView):
         """
 
         event_exist = Event.objects.filter(code=code).exists()
-        event = Event.objects.filter(code=code).get()
 
         if event_exist:
+            event = Event.objects.filter(code=code).get()
             event_obj = dict()
             event_obj['id'] = event.id
             event_obj['board'] = event.board_id
