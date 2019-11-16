@@ -78,7 +78,8 @@ class BackendEventModelViewSet(ProtectedBaseModelViewSet):
         event_obj['date'] = request.data.get('date')
         event_obj['note'] = request.data.get('note')
         event_obj['category'] = request.data.get('category')
-        event_obj['image'] = request.data.get('image')
+        if 'image' in request.data:
+            event_obj['image'] = request.data.get('image')
 
         serializer_event = BackendEventModelSerializer(instance, data=event_obj)
         if serializer_event.is_valid():
